@@ -26,3 +26,47 @@ def numberToState(number):
 
     result = result[::-1]
     return result
+
+def leftTransition(state):
+    changedState = state
+
+    for i in range(N):
+        for j in range(1, N):
+            if changedState[i][j] == 0:
+                changedState[i][j-1], changedState[i][j] = changedState[i][j], changedState[i][j-1]
+                return changedState
+
+    return None
+
+def rightTransition(state):
+    changedState = state
+
+    for i in range(N):
+        for j in range(N-1):
+            if changedState[i][j] == 0:
+                changedState[i][j+1], changedState[i][j] = changedState[i][j], changedState[i][j+1]
+                return changedState
+
+    return None
+
+def upTransition(state):
+    changedState = state
+
+    for i in range(1, N):
+        for j in range(N):
+            if changedState[i][j] == 0:
+                changedState[i-1][j], changedState[i][j] = changedState[i][j], changedState[i-1][j]
+                return changedState
+
+    return None
+
+def downTransition(state):
+    changedState = state
+
+    for i in range(N-1):
+        for j in range(N):
+            if changedState[i][j] == 0:
+                changedState[i+1][j], changedState[i][j] = changedState[i][j], changedState[i+1][j]
+                return changedState
+
+    return None
