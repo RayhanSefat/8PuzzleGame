@@ -21,7 +21,7 @@ class PuuzleSolver:
 
         if nodeState == util.targetState:
             self.foundTarget = True
-            self.nodeList.append(nodeState)
+            self.nodeList.append(node)
             return
         
         if currentDepth == mxDepth:
@@ -41,7 +41,7 @@ class PuuzleSolver:
             self.dls(mxDepth, currentDepth + 1, transitionStateCorespondingNumber)
 
             if self.foundTarget == True:
-                self.nodeList.append(transitionState)
+                self.nodeList.append(node)
                 return
 
     def iddls(self):
@@ -57,9 +57,11 @@ class PuuzleSolver:
             mxDepth += 1
 
     def solvePuzzle(self):
-        if self.checkVaalidty(self.inputState) == False:
+        if self.checkVaalidty() == False:
             print('Given input in not valid')
             return
+        
+        print('Solution exists!\n')
         
         self.iddls()
 
@@ -67,6 +69,7 @@ class PuuzleSolver:
         stateNumber = 0
         for node in self.nodeList:
             print(f'State {stateNumber}:')
+            stateNumber += 1
             nodeState = util.numberToState(node)
             for row in nodeState:
                 print(row)
@@ -77,6 +80,7 @@ def getInputState():
         inputState = [None] * util.N
         for i in range(util.N):
             inputState[i] = list(map(int, input().split()))
+        print('')
 
         return inputState
 

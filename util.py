@@ -1,5 +1,7 @@
 # any state is a 3 X 3 matrix
 
+import copy
+
 N = 3
 targetState = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]
 
@@ -28,7 +30,7 @@ def numberToState(number):
     return result
 
 def leftTransition(state):
-    changedState = state
+    changedState = copy.deepcopy(state)
 
     for i in range(N):
         for j in range(1, N):
@@ -39,7 +41,7 @@ def leftTransition(state):
     return None
 
 def rightTransition(state):
-    changedState = state
+    changedState = copy.deepcopy(state)
 
     for i in range(N):
         for j in range(N-1):
@@ -50,7 +52,7 @@ def rightTransition(state):
     return None
 
 def upTransition(state):
-    changedState = state
+    changedState = copy.deepcopy(state)
 
     for i in range(1, N):
         for j in range(N):
@@ -61,7 +63,7 @@ def upTransition(state):
     return None
 
 def downTransition(state):
-    changedState = state
+    changedState = copy.deepcopy(state)
 
     for i in range(N-1):
         for j in range(N):
